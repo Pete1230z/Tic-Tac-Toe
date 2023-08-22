@@ -120,3 +120,18 @@ button {
 	height: calc(100% * .7);
 	background-color: white;
 }
+
+.winning-message {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: black;
+	opacity: .9;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
