@@ -1,17 +1,92 @@
 * {
 	border: 1px solid black;
+	box-sizing: border-box;
 }
 
 body {
-	height: 100vh;
 	margin: 0;
-	padding: 0;
+	height: 100vh;
 }
 
+.players {
+    display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
 
+button {
+	display: block;
+	text-align: center;
+    margin: 0 auto;
+	font-size: 2em;
+	margin-bottom: 10px;
+	align-content: center;
+}
 
 .board {
 	display: grid;
-	grid-template-columns: repeat(3, minmax(150px, 200px));
-	grid-template-rows: repeat(3, minmax(100px, 150px));
+	grid-template-columns: repeat(3, 100px);
+	grid-template-rows: repeat(3, 100px);
+	justify-content: center;
+	align-content: center;
+}
+
+.cell {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.cell:first-child, .cell:nth-child(2), .cell:nth-child(3) {
+	border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+	border-left: none;
+}
+
+.cell:nth-child(3n + 3) {
+	border-right: none;
+}
+
+.cell:nth-child(7), .cell:nth-child(8), .cell:nth-child(9) {
+	border-bottom: none;
+}
+
+.cell.x::before,
+.cell.x::after {
+    content: '';
+	position: absolute;
+	width: calc(100% * .15);
+	height: calc(100% * .9);
+	background-color: black;
+}
+
+.cell.x::before {
+	transform: rotate(45deg);
+}
+
+.cell.x::after {
+	transform: rotate(-45deg);
+}
+
+.cell.circle::before,
+.cell.circle::after {
+    content: '';
+	position: absolute;
+	background-color: black;
+	border-radius: 50%;
+}
+
+.cell.circle::before {
+	width: calc(100% * .9);
+	height: calc(100% * .9);
+	background-color: black;
+}
+
+.cell.circle::after {
+	width: calc(100% * .7);
+	height: calc(100% * .7);
+	background-color: white;
 }

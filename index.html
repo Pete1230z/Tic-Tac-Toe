@@ -8,19 +8,23 @@
 	<script src="script.js" defer></script>
 </head>
 <body>
-	<h1 class="player">Player 1(X)</h1>
-	<h1 class="player">Player 2(O)</h1>
-	<h2>Restart Game</h2>
-	<div class="board">
-		<div class="cell"></div>
-		<div class="cell"></div>
-		<div class="cell"></div>
-		<div class="cell"></div>
-		<div class="cell"></div>
-		<div class="cell"></div>
-		<div class="cell"></div>
-		<div class="cell"></div>
-		<div class="cell"></div>
+  <div class="players">
+	<h1 class="player1">Player 1(X)</h1>
+	<h1 class="player2">Player 2(O)</h1>
+  </div>
+	<div class="board" id="board">
+		<div class="cell x" data-cell></div>
+		<div class="cell circle" data-cell></div>
+		<div class="cell" data-cell></div>
+		<div class="cell" data-cell></div>
+		<div class="cell" data-cell></div>
+		<div class="cell" data-cell></div>
+		<div class="cell" data-cell></div>
+		<div class="cell" data-cell></div>
+		<div class="cell" data-cell></div>
+	</div>
+	<div id="winning-message">
+		<button id="restart-game">Restart Game</button>
 	</div>
 </body>
 </html>
