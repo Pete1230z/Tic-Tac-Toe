@@ -134,4 +134,10 @@ button {
 	justify-content: center;
 	align-items: center;
 	color: white;
+	font-size: 5rem;
+	visibility: hidden; 
+}
+
+.winning-message button {
+	font-size: 3rem;
 }
