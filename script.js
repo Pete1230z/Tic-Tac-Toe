@@ -11,6 +11,8 @@ const winningCombinations = [
 	[2,4,6]
 ]
 const cellElements = document.querySelectorAll('[data-cell]');
+//Must be let instead of const so that the value can change
+let circleTurn = false;
 
 cellElements.forEach(cell => {
 	cell.addEventListener('click', playerMove)
@@ -18,14 +20,24 @@ cellElements.forEach(cell => {
 
 function playerMove(e) {
 	const cell = e.target;
-	cell.className = 'cell x';
+	const currentClass = circleTurn ? playerClassCircle : playerClassX;
+	placeMark(cell, currentClass)
+	swapTurns();
 	console.log(cell)
 }
+
+function placeMark(cell, currentClass) {
+	cell.classList.add(currentClass);
+}
+
+function swapTurns() {
+	circleTurn = !circleTurn;
+}
 //StartGame
-//placeMark
+//placeMark DONE
 //Check for win
 //Check for draw
-//Switch turns
+//Switch turns DONE
 
 
 
