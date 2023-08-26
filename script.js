@@ -15,12 +15,24 @@ const cellElements = document.querySelectorAll('[data-cell]');
 let circleTurn = false;
 const board = document.getElementById('board');
 
-cellElements.forEach(cell => {
-	cell.addEventListener('click', playerMove)
+//Call function here so that board starts with class X
+restartGame();
+
+//The name of this function does not matter, it is not actually accessing cell variable
+cellElements.forEach(pen => {
+	pen.addEventListener('click', playerMove)
 });
 
-function StartGame() {
-	cell.classList.remove(currentClass);
+function restartGame() {
+	board.classList.add(playerClassX);
+}
+
+const gameWinner = () => {
+    if(winningCombinations.some(playerClassX) === true) {
+		const winner = document.getElementById('winning-message');
+		winner.style.visibility = 'visible';
+		console.log(gameWinner())
+	}
 }
 
 function playerMove(e) {
@@ -40,6 +52,7 @@ function placeMark(cell, currentClass) {
 function swapTurns() {
 	circleTurn = !circleTurn;
 }
+
 
 //StartGame
 //placeMark DONE

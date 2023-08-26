@@ -114,6 +114,7 @@ button {
 	height: calc(100% * .9);
 }
 
+/*Inner Circle*/
 .cell.circle::after,
 .board.circle .cell:not(.x):not(.circle):hover::after {
 	width: calc(100% * .7);
