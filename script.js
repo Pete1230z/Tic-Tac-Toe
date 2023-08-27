@@ -24,10 +24,9 @@ cellElements.forEach(pen => {
 });
 
 function restartGame() {
-	board.classList.add(playerClassX);
 }
 
-const gameWinner = () => {
+function gameWinner() {
     if(winningCombinations.some(playerClassX) === true) {
 		const winner = document.getElementById('winning-message');
 		winner.style.visibility = 'visible';
@@ -40,17 +39,25 @@ function playerMove(e) {
 	const currentClass = circleTurn ? playerClassCircle : playerClassX;
 	placeMark(cell, currentClass)
 	swapTurns();
+	setBoard();
 }
 
 function placeMark(cell, currentClass) {
 	cell.classList.add(currentClass);
-	board.classList.remove(playerClassCircle, playerClassX);
-	board.classList.add(currentClass);
-	console.log(board)
 }
 
 function swapTurns() {
 	circleTurn = !circleTurn;
+}
+
+function setBoard() {
+	board.classList.remove(playerClassCircle, playerClassX);
+	if(circleTurn) {
+		board.classList.add(playerClassCircle)
+	} else {
+	    board.classList.add(playerClassX)
+	}
+	console.log(board);
 }
 
 
