@@ -37,7 +37,8 @@ function playerMove(e) {
 	const currentClass = circleTurn ? playerClassCircle : playerClassX;
 	placeMark(cell, currentClass)
 	if(checkWin(currentClass)) {
-       alert('Congratulations ${currentClass} won!')
+       winningMessage.innerText = `Congratulations ${currentClass} won!`
+	   winningMessage.classList.add('show');
 	}
 	swapTurns();
 	setBoard();
