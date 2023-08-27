@@ -36,6 +36,9 @@ function playerMove(e) {
 	const cell = e.target;
 	const currentClass = circleTurn ? playerClassCircle : playerClassX;
 	placeMark(cell, currentClass)
+	if(checkWin(currentClass)) {
+       alert('Congratulations ${currentClass} won!')
+	}
 	swapTurns();
 	setBoard();
 }
@@ -57,8 +60,16 @@ function setBoard() {
 	}
 }
 
+function checkWin(currentClass) {
+	return winningCombinations.some(combinations => {
+		return combinations.every(cellIndex => {
+			return cellElements[cellIndex].classList.contains(currentClass);
+		})
+	})
+}
 
-//StartGame
+
+//StartGame DONE
 //placeMark DONE
 //Check for win
 //Check for draw
