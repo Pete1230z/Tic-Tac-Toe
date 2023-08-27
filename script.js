@@ -11,35 +11,52 @@ const winningCombinations = [
 	[2,4,6]
 ]
 const cellElements = document.querySelectorAll('[data-cell]');
+const winningMessage = document.querySelector('[data-winning-message-text]')
 //Must be let instead of const so that the value can change
 let circleTurn = false;
 const board = document.getElementById('board');
-
-//Call function here so that board starts with class X
-restartGame();
 
 //The name of this function does not matter, it is not actually accessing cell variable
 cellElements.forEach(pen => {
 	pen.addEventListener('click', playerMove)
 });
 
-function restartGame() {
-}
-
-function gameWinner() {
-    if(winningCombinations.some(playerClassX) === true) {
-		const winner = document.getElementById('winning-message');
-		winner.style.visibility = 'visible';
-		console.log(gameWinner())
-	}
+//Not Complete
+function gameWinner(currentClass) {
+    return winningCombinations.some(combination => {
+		return combination.every(cellIndex => {
+			return cellElements[cellIndex].classList.contains(currentClass)
+		});
+	});
 }
 
 function playerMove(e) {
 	const cell = e.target;
 	const currentClass = circleTurn ? playerClassCircle : playerClassX;
 	placeMark(cell, currentClass)
-	swapTurns();
-	setBoard();
+	if(gameWinner(currentClass)) {
+		endGame(false)
+	} else if (isDraw()) {
+	    endGame(true)
+	} else {
+		swapTurns();
+	    setBoard();
+	}
+}
+
+function endGame(draw) {
+    if (draw) {
+		winningMessage.innerText = 'It is a draw';
+	} else {
+		winningMessage.innerText = `Player with ${circleTurn ? playerClassCircle : playerClassX} wins!`
+	}
+    winningMessage.classList.add('show');
+}
+
+function isDraw() {
+	return [...cellElements].every(cell => {
+		return cell.classList.contains(playerClassX) || cell.classList.contains(playerClassCircle)
+	})
 }
 
 function placeMark(cell, currentClass) {
