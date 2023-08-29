@@ -11,7 +11,8 @@ const winningCombinations = [
 	[2,4,6]
 ]
 const cellElements = document.querySelectorAll('[data-cell]');
-const winningMessage = document.getElementById('winningMessage');
+const winningPopUp = document.getElementById('winningMessage');
+const winningMessage = document.querySelector('[data-winning-message-text]')
 const board = document.getElementById('board');
 
 //Must be let instead of const so that the value can change. Left equal to nothing so that we can set it to false in startGame
@@ -37,8 +38,8 @@ function playerMove(e) {
 	const currentClass = circleTurn ? playerClassCircle : playerClassX;
 	placeMark(cell, currentClass)
 	if(checkWin(currentClass)) {
-       winningMessage.innerText = `Congratulations ${currentClass} won!`
-	   winningMessage.classList.add('show');
+	   winningPopUp.classList.add('show');
+	   winningMessage.innerText = `Congratulations ${currentClass} won!`
 	}
 	swapTurns();
 	setBoard();

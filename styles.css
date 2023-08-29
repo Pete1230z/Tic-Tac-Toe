@@ -131,17 +131,18 @@ button {
 	bottom: 0;
 	background-color: black;
 	opacity: .9;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 	color: white;
 	font-size: 5rem;
 }
 
 .winning-message button {
 	font-size: 3rem;
+	cursor: pointer;
 }
 
 .winning-message.show {
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
