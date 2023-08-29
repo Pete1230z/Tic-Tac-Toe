@@ -11,14 +11,18 @@ const winningCombinations = [
 	[2,4,6]
 ]
 const cellElements = document.querySelectorAll('[data-cell]');
+console.log(cellElements)
 const winningPopUp = document.getElementById('winningMessage');
-const winningMessage = document.querySelector('[data-winning-message-text]')
+const winningMessage = document.querySelector('[data-winning-message-text]');
+const restartButton = document.getElementById('restart-game');
 const board = document.getElementById('board');
 
 //Must be let instead of const so that the value can change. Left equal to nothing so that we can set it to false in startGame
 let circleTurn
 
 startGame();
+
+restartButton.addEventListener('click', startGame);
 
 function startGame() {
     circleTurn = false;
@@ -28,7 +32,7 @@ function startGame() {
 	pen.classList.remove(playerClassX)
 	pen.addEventListener('click', playerMove)
 });
-    winningMessage.classList.remove('show');
+    winningPopUp.classList.remove('show');
 	//setBoard here so that at start the game knows who is going first
 	setBoard();
 }
@@ -40,6 +44,9 @@ function playerMove(e) {
 	if(checkWin(currentClass)) {
 	   winningPopUp.classList.add('show');
 	   winningMessage.innerText = `Congratulations ${currentClass} won!`
+	} else if(isDraw()) {
+	   winningPopUp.classList.add('show');
+	   winningMessage.innerText = 'It is a Draw!'
 	}
 	swapTurns();
 	setBoard();
@@ -62,6 +69,7 @@ function setBoard() {
 	}
 }
 
+//The function iterates through each combination in winningCombinations and checks if every cell index in a combination contains the currentClass provided. If all cell indexes in a combination have the currentClass, the function returns true, indicating that the current player with the given class has won.
 function checkWin(currentClass) {
 	return winningCombinations.some(combinations => {
 		return combinations.every(cellIndex => {
@@ -69,6 +77,14 @@ function checkWin(currentClass) {
 		})
 	})
 }
+
+function isDraw() {
+	const cellElementsArray = [...cellElements];
+    return cellElementsArray.every(pen => {
+		return pen.classList.contains(playerClassCircle) || pen.classList.contains(playerClassX);
+	})
+}
+
 
 
 //StartGame DONE
